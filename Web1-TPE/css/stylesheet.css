@@ -1,0 +1,362 @@
+body{
+    font-family: georgia, times, arial, serif;
+    margin: auto;
+    overflow-x: hidden;
+}
+header{
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.062);
+    border-bottom: rgb(0, 0, 0) solid;
+}
+.header-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+    .logo{
+        display: flex;
+        align-items: center;
+    }
+
+        h1{
+            text-align: start;
+            margin-left: 10px;
+        }
+    header ul{
+        display: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+		align-items: center;
+    }
+        header ul li{
+            font-size: x-large;
+            font-weight: bold;
+            border-radius: 1rem;
+			padding: 1rem;
+        }
+        header ul a{
+            text-decoration: none;
+			color: rgb(218, 124, 24);
+        }
+        header li:hover{
+            background: rgba(228, 228, 228, 0.774);
+	        transition: all 0.4s linear;
+        }
+        header ul li, footer ul li{
+            list-style: none;
+        }
+
+.fa-bars{
+    color: rgb(218, 124, 24);
+}
+
+/* Index */
+
+.middle-wrapper{
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "title"
+    "section-a"
+    "image-a"
+    "section-b"
+    "image-b"
+    "section-c"
+    "image-c";
+}
+h1,h2{
+    color: rgb(218, 124, 24);
+    text-shadow: rgb(0, 0, 0) 1px 1px;
+}
+h2{
+    font-weight: bolder;;
+    font-size: xx-large;
+    margin: 0px;
+    text-align: center;
+    padding: 20px
+}
+
+.middle-wrapper h2{
+    grid-area: title;
+}
+h3.accessories{
+    grid-area: section-a;
+}
+section.accessories{
+    background-image: url(Acesorios.jpg);
+    grid-area: image-a;
+}
+h3.customized {
+    grid-area: section-b;
+}
+section.customized{
+    grid-area: image-b;
+    background-image: url(Personalizados.jpg);
+}
+h3.copy {
+    grid-area: section-c;
+}
+section.copy{
+    grid-area: image-c;
+    background-image: url(Repuestos.jpg);
+}
+h3.copy, h3.accessories, h3.customized{
+    font-size: x-large;
+    background-color: rgba(0, 0, 0, 0.507);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 2px;
+    border-radius: 20px;
+    display: grid;
+    align-content: center;
+}
+section.accessories , section.customized , section.copy {
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-self: center;
+}
+section.accessories ul, section.customized ul, section.copy ul{
+    color: rgba(0, 0, 0, 0);
+    font-size: x-large;
+    height: 324px;
+    width: 324px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+section.accessories ul:hover, section.customized ul:hover, section.copy ul:hover{
+        color: rgb(236, 184, 71);
+        text-shadow: rgb(0, 0, 0) 8px 6px 6px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+.show{
+    display: flex;
+}
+/* footer */
+
+footer {
+    background-color: rgba(0, 0, 0, 0.062);
+    margin-top: 10px;
+    overflow: hidden;
+}
+    .footer h2{
+        text-align: center;
+        border-top: rgb(0, 0, 0) solid;
+    }
+footer ul{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 0px 0px 0px;
+    padding: 0px;
+}
+/* Estilo para materiales */
+
+.hidden{
+    display: none;
+}
+
+.flex-container{
+	display: flex;
+    flex-direction: column;
+}
+.left-panel{
+	margin: 0px 20px;
+}
+.left-panel h3, .left-panel li{
+    padding: 0px 20px;
+}
+#btn-filamentos{
+    margin: 5px;
+    text-align: center;
+}
+.left-panel h3, main>h3 {
+    background-color:rgb(218, 124, 24) ;
+    color:white;
+    border-radius: 5px;
+    font-size: x-large;
+    margin: 0px;
+}
+.right-content{
+    margin: 0px 20px;
+}
+.right-content p {
+    text-align: justify;
+	margin-top: 5px;
+}
+.left-panel ul {
+    margin: 10px 0px;
+    padding: 0px;
+}
+.left-panel li{
+    list-style: none;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+}
+.left-panel li:hover{
+    background: rgba(236, 131, 10, 0.774);
+	transition: 0.4s linear;
+    border-radius: 10px;
+}
+p.destacado{
+    font-weight: bold;
+}
+/* Estilo para tabla impresoras */
+
+table.impresoras {
+    max-width: 850px;
+    margin: 2rem auto;
+    border: solid 1px #ccc;
+    border-spacing: 0;
+}
+table.impresoras thead tr {
+    background: black;
+	color: white;
+}
+table.impresoras th, table.impresoras td {
+    border-right: 1px solid #ccc;
+	min-width: 150px;
+	padding: 0.5rem;
+	text-align: left;
+}
+table.impresoras tbody tr {
+    background: white;
+}
+table.impresoras td {
+    border-bottom: 1px solid #ccc;
+}
+/* Estilo para simulador de presupuesto */
+
+#titlesimulator{
+    margin: 10px 0px;
+}
+.budgetsimulator{
+    display: flex;
+     justify-content: center;
+    }
+    .simulator {
+        border-bottom: solid rgb(218, 124, 24);
+        padding: 5px;
+        width: 80%;
+    }
+    .headersimulator{
+        padding: 10px;
+        background-color:rgb(218, 124, 24) ;
+        color:white;
+        font-size: x-large;
+        
+    }
+    .materialsentry,.grsentry, .hsentry, .cliententry{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: x-large;
+        border-bottom: rgba(0, 0, 0, 0.205) solid 1px;
+    }
+    
+    .materialsentry, .hsentry, #budget{
+        background-color: rgb(223, 223, 223);
+    }
+    
+    .materialsentry p,.grsentry p, .hsentry p,.cliententry p, .headersimulator{
+        margin: 5px 0px;
+    }
+    #budget{
+        padding: 5px 0px;
+        display: flex;
+        justify-content: space-evenly;
+        font-size: large;
+    }
+section.table{
+    overflow-x: auto;
+}
+table.presupuesto{
+    margin-left: auto;
+    margin-right: auto;
+}
+#edittab{
+    display: flex;
+    min-width: min-content;
+    justify-content: center;
+}
+/* Estilo para contacto */
+
+form.contacto {
+    min-width: min-content;
+	width: 40%;
+	margin: 2rem auto;
+	padding: 1rem;
+	border-radius: 2rem;
+	background-color: rgb(218, 124, 24);
+}
+form.contacto label {
+    display: inline-block;
+    width: 80px;
+	color: white;
+}
+form.contacto .long-label {
+	width: auto;
+}
+form.contacto input{
+	width: 80%;
+} 
+form.contacto .short-input{
+	width: 32%;
+}
+form.contacto textarea {
+    margin-bottom: 20px;
+    width: 90%;
+}
+form.contacto .centrado {
+	display: flex;
+	justify-content: space-evenly;
+}   
+/* desktop */
+
+@media only screen and (min-width: 1024px){
+    .middle-wrapper{
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: auto;
+        grid-template-areas:
+        "title title title"
+        "section-a image-b section-c"
+        "image-a image-b image-c"
+        "image-a section-b image-c";
+    }
+    /* Header    */
+
+    #btn-nav{
+        display:none;
+    }
+    header nav.hidden{ 
+        display: flex;
+    }
+    header {
+        display:flex;
+    }
+    header ul{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    /* Filamentos */
+
+    .left-panel{
+        display:flex;
+        flex-direction: column;
+    }
+    .flex-container{
+        display: flex;
+        flex-direction: row;
+    }
+}

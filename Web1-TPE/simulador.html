@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pivot3D-Presupuesto</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script src="https://kit.fontawesome.com/25dec087b4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+		<div class="header-wrapper">
+			<div class="logo">
+				<a href="index.html"><img src="img/Logo  chico.png" alt= "logo pivot3d"></a>
+				<h1>Taller de impresion 3D</h1>
+			</div>
+			<!-- <h2 id= "btn-nav"> Menu</h2> -->
+            <i class="fas fa-bars fa-3x" id="btn-nav"></i>
+		</div>	
+		<nav>
+			<ul>
+				<li><a href="Index.html"> Home </a></li>
+				<li><a href="simulador.html"> Simulador</a></li>
+				<li><a href="filamentos.html"> Materiales</a></li>
+				<li><a href="impresoras.html"> Impresoras</a></li>
+				<li><a href="contacto.html"> Contacto</a></li>
+			</ul>
+		</nav>
+    </header>
+    <main>
+        <h2 id="titlesimulator">Simulador de Presupuestos</h2>
+        <div class="budgetsimulator">
+            <form class="simulator">
+                <p class="headersimulator">Ingrese las variables</p>
+                <div class="cliententry">
+                    <p>Nombre del Cliente</p>
+                    <input type="text" name="clientname" placeholder="John doe" required>
+                </div>
+                <div class="materialsentry">
+                    <p>Materiales</p>
+                    <div>
+                        <input type="radio" name="material" value="PLA" > PLA 
+                        <input type="radio" name="material" value="Pet-g" > Pet-g
+                        <input type="radio" name="material" value="ABS" > ABS
+                        <input type="radio" name="material" value="Flex" > Flex
+                        <input type="radio" name="material" value="Tecnicos" > Tecnicos        
+                    </div>
+                </div>
+                <div class="grsentry">
+                    <p>Cantidad de Gr</p>
+                    <input type="number" name="gr" placeholder="Gr ">
+                </div>
+                <div class="hsentry">
+                    <p>Horas de impresion</p>
+                    <input type="number" name="time" placeholder="Hs ">
+                </div>
+                <div id="budget">
+                    <button type="submit">Presupuestar</button>
+                    <button type="button" id="add3">Ingresar 3</button>
+                </div>
+            </form>
+        </div>
+        <section class="table">
+            <table class="presupuesto">
+                <thead class="headersimulator">
+                    <tr >
+                        <th>Nombre</th>
+                        <th>Material</th>
+                        <th>Cantidad de material(Gr)</th>
+                        <th>Horas de impresion</th>
+                        <th>Presupuesto</th>
+                    </tr>
+                    <tr>
+                        <th><input type="text" name="namefilter" placeholder="John doe" required> </th>
+                        <th>
+                            <select type="select" name="matfilter">
+                                <option value="">Todos</option>
+                                <option value="PLA">PLA</option>
+                                <option value="ABS">ABS</option>
+                                <option value="Pet-g">Pet-g</option>
+                                <option value="Tecnicos">Tecnicos</option>
+                                <option value="Flex">Flex</option>
+                            </select>
+                        </th>
+                        <th><input type="number" name="grfilter" placeholder="cantidad Gr" required></th>
+                        <th><input type="number" name="hrfilter" placeholder="cantidad Hs" required></th>
+                        <th><input type="number" name="budgetfilter" placeholder="Monto" required></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+            </table>
+            <form id="edittab">
+            </form>
+        </section>
+    </main>
+    <footer>
+    	<h2>Nuestras Redes</h2>
+		<ul>     
+			<li><a href="https://www.instagram.com/pivot3d_tandil"> <img src="img/IGV2.png" alt="Logo Instagram"></a> </li>               
+			<li><a href="https://www.facebook.com/Pivot3dtandil">  <img src="img/FB.png" alt="Logo FaceBook"></a> </li>
+			<li><a href="https://api.whatsapp.com/send?phone=542914368879"> <img src="img/WAV2.png"  alt="Logo Whatsapp"></a> </li>
+		</ul>
+    </footer>
+    <script type="text/javascript" src="js/main.js"> </script>
+    <script type="text/javascript" src="js/budget.js"> </script>
+</body>
+</html>

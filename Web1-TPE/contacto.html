@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<title>Pivot3d-Contacto</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/stylesheet.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/25dec087b4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+		<div class="header-wrapper">
+			<div class="logo">
+				<a href="index.html"><img src="img/Logo  chico.png" alt= "logo pivot3d"></a>
+				<h1>Taller de impresion 3D</h1>
+			</div>
+			<!-- <h2 id= "btn-nav"> Menu</h2> -->
+            <i class="fas fa-bars fa-3x" id="btn-nav"></i>
+		</div>	
+		<nav>
+			<ul>
+				<li><a href="Index.html"> Home </a></li>
+				<li><a href="simulador.html"> Simulador</a></li>
+				<li><a href="filamentos.html"> Materiales</a></li>
+				<li><a href="impresoras.html"> Impresoras</a></li>
+				<li><a href="contacto.html"> Contacto</a></li>
+			</ul>
+		</nav>
+    </header>
+	<form action="" class="contacto">
+		
+			<label for="nombre">Nombre</label>
+			<input name="nombre" id="nombre" type="text" placeholder="Nombre y Apellido" required>
+		
+		
+			<label for="email">E-mail</label>
+			<input name="Email" id="email" type="email" placeholder="Nombre@ejemplo.com" required>
+		
+		<p>
+			<label for="telefono">Teléfono</label>
+			<input name="Teléfono" id="teléfono" type="teléfono" placeholder="1234567890" required>
+		</p>
+		<p>
+			<label for="servicio">Servicio</label>
+			<select name="servicio" id="servicio" required>
+				<option value="Asesoramiento">Asesoramiento</option>
+				<option value="Diseño">Diseño</option>
+				<option value="Venta">Venta</option>
+			</select>
+		</p>
+		<p>
+			<label for="comentario">Comentario</label><br>
+			<textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Ingresa tu consulta" ></textarea>
+		</p>
+		<p><label class="long-label" for="captcha">Ingrese el captcha que se muestra en la imagen:</label></p>
+		<div>
+			<img id="captcha-img" src="img/Captcha1.jpg" alt="Captcha">
+			<img id="refresh" src="img/refresh.png" alt="Cambiar captcha">
+		</div>
+		<input class="short-input" type="text" name="captcha" required>
+		<p id="captcha-validation"></p>
+		<div class="centrado">
+			<button class="short-input" type="submit">Enviar</button>
+			<button class="short-input" type="reset">Borrar datos</button>
+		</div>
+	</form>
+	<footer>
+    	<h2>Nuestras Redes</h2>
+		<ul>     
+			<li><a href="https://www.instagram.com/pivot3d_tandil"> <img src="img/IGV2.png" alt="Logo Instagram"></a> </li>               
+			<li><a href="https://www.facebook.com/Pivot3dtandil">  <img src="img/FB.png" alt="Logo FaceBook"></a> </li>
+			<li><a href="https://api.whatsapp.com/send?phone=542914368879"> <img src="img/WAV2.png"  alt="Logo Whatsapp"></a> </li>
+		</ul>
+    </footer>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/contacto.js"></script>
+</body>
+
+</html>
