@@ -12,7 +12,7 @@
             $sentencia = $this->db->prepare( "select * from presupuestos");
             $sentencia->execute();
             $presupuesto = $sentencia->fetchAll(PDO::FETCH_OBJ);
-            var_dump ($presupuesto);
+            
             return $presupuesto;
         }
     }
