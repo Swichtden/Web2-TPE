@@ -5,8 +5,8 @@
 	<table class="presupuesto">
 		<thead class="headersimulator">
 			<tr >
-				<th>Nombre</th>
-				<th>Monto</th>
+				<th>Nombre</th>	
+				{*<th>Monto</th>*}	
 				<th>Material</th>
 			</tr>
 			<!-- <tr>
@@ -29,9 +29,8 @@
 		<tbody>
 		  {foreach from=$Budgets item=$budget}
 			  <tr>
-				  <th>{$budget->nombre_cliente}</th>
-				  <th>{$budget->monto}</th>
-				  <th>{$budget->FK_id_material}</th>
+				  <th><a href="presupuesto/{$budget->id_cliente}">{$budget->nombre_cliente}</a></th>
+				  <th>{$budget->nombre_material}</th>
 			  </tr>
 		  {/foreach}
 		</tbody>

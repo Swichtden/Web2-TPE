@@ -16,4 +16,19 @@ require_once "./View/TableView.php";
             $budgets = $this->TableModel->getBudgets();
             $this->TableView->showTable($budgets);
         }
+
+        function showBudget($id_cliente){
+            $budget = $this->TableModel->getBudget($id_cliente);
+            $this->TableView->showBudget($budget);
+        }
+
+        function showMaterialesLista(){
+            $materialesLista=$this->TableModel->getMaterialesLista();
+            $this->TableView->showTableMateriales($materialesLista);
+        }
+
+        function showMaterialesxPresupuesto($material){
+            $MaterialesxPresupuesto=$this->TableModel->getMaterialesxPresupuesto($material);
+            $this->TableView->showMaterialesxPresupuesto($MaterialesxPresupuesto);
+        }
     }
