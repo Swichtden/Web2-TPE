@@ -13,13 +13,27 @@ else{
     $action = 'home';
 }
 
-switch ($action) {
+$params = explode('/', $action);
+
+switch ($params[0]) {
     case 'home':
-       $TableController->showBudgets();
+        $TableController->showBudgets();
         break;
-   //case 'presupuesto':
-        
-     //   break;
+    case 'presupuesto':  //se agrego la tabla presupuesto con nombre del cliente y monto.
+        $TableController->showBudget($params[1]);
+        break;
+   case 'materiales'://se agrega los detalles de la lista materiales.
+        $TableController->showMaterialesLista();
+        break;
+    case 'material':
+        if (!empty($params[1])){
+            $TableController->showMaterialesxPresupuesto($params[1]);
+        }
+        else{
+            echo "Seleccione una categoria";
+            $TableController->showMaterialesLista();
+        }
+            break;
     default:
         echo "ERROR 404: Pagina no encontrada a";
         break;
