@@ -12,6 +12,17 @@
             $this->view = new LoginView();
         }
         
+        function logout(){
+            session_start();
+            session_destroy();
+            $this->view->showLogin("Te Deslogueaste");
+        }
+    
+        function login(){
+            $this->view->showLogin();
+        }
+    
+        
     
 
     }
