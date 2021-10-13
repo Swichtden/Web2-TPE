@@ -10,9 +10,8 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
         }
 
         function showLogin(){
-            $this->smarty->assing('Title','Logearse');
-            $this->smarty->assing('',);
-            $this->smarty->display('Templetes/login.tpl');
+            $this->smarty->assing('Title','Login');
+            $this->smarty->display('Templetes/Login.tpl');
         }
 
         

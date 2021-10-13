@@ -27,14 +27,12 @@
                 $email = $_POST['email'];
                 $password = $_POST['password'];
          
-                
                 $user = $this->model->getUser($email);
          
-                
                 if ($user && password_verify($password, $user->password)) {
-    
                     session_start();
                     $_SESSION["email"] = $email;
+                    $_SESSION["rol"] = $user->rol;
                     
                     $this->view->showHome();
                 } else {

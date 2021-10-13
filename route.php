@@ -4,7 +4,7 @@ require_once "controller/TableController.php";
 define('BASE_URL',  '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/'); 
 
 $TableController = new TableController;
-//$LoginController = new LoginController;
+$LoginController = new LoginController;
 
 if(!empty($_GET['action'])){
     $action = $_GET['action'];
@@ -18,6 +18,12 @@ $params = explode('/', $action);
 switch ($params[0]) {
     case 'home':
         $TableController->showBudgets();
+        break;
+    case 'login':
+        $LoginController->login();
+        break;
+    case 'verifyLogin':
+        $LoginController->verifyLogin();
         break;
     case 'presupuesto':  //se agrego la tabla presupuesto con nombre del cliente y monto.
         $TableController->showBudget($params[1]);
