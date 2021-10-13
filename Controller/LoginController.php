@@ -22,7 +22,27 @@
             $this->view->showLogin();
         }
     
-        
+        function verifyLogin(){
+            if (!empty($_POST['email']) && !empty($_POST['password'])) {
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+         
+                
+                $user = $this->model->getUser($email);
+         
+                
+                if ($user && password_verify($password, $user->password)) {
+    
+                    session_start();
+                    $_SESSION["email"] = $email;
+                    
+                    $this->view->showHome();
+                } else {
+                    $this->view->showLogin("Acceso denegado");
+                }
+            }
+        }
+    
     
 
     }
