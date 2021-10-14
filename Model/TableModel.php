@@ -60,4 +60,39 @@
             return $materiales;
         }
           
+
+        function insertPresupuesto($nombre, $monto, $material){
+            $sentencia = $this->db->prepare("INSERT INTO presupuestos( nombre_cliente, monto, FK_id_material)
+                                             VALUES(?, ?, ?)");
+            $sentencia->execute(array($nombre, $monto, $material));
+        }
+        
+        function insertMaterial($nombre, $precio, $descripcion){
+            $sentencia = $this->db->prepare("INSERT INTO material( nombre_material,precio_material, descripcion)
+                                             VALUES(?, ?, ?)");
+            $sentencia->execute(array($nombre, $precio, $descripcion));
+        }
+
+        function deletePresupuesto($id){
+            $sentencia = $this->db->prepare("DELETE FROM presupuestos WHERE id_cliente=?");
+            $sentencia->execute(array($id));
+        }
+
+        function deleteMaterial($id){
+            $sentencia = $this->db->prepare("DELETE FROM materiales WHERE id_material=?");
+            $sentencia->execute(array($id));
+        }
+
+        function updatePresupuesto($id, $nombre, $monto, $material){
+            $sentencia = $this->db->prepare("UPDATE presupuestos SET nombre_cliente=?, monto=?, FK_id_material=? 
+                                             WHERE id_cliente=?");
+            $sentencia->execute(array($nombre, $monto, $material, $id));
+        }
+        
+        function updateMaterial($id, $nombre, $precio, $descripcion){
+            $sentencia = $this->db->prepare("UPDATE presupuestos SET nombre_material=?, precio_material=?, descripcion=? 
+                                             WHERE id_material=?");
+            $sentencia->execute(array($nombre, $precio, $descripcion, $id));
+        }
+
     }
