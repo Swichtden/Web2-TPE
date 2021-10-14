@@ -1,6 +1,13 @@
 {include file='Templates/Header.tpl'}
 
 <section class="table">
+	<nav>
+	<ul>
+		<li>
+			<a href="login"></a>
+		</li>
+	</ul>
+	</nav>
 	<h1>{$Title}</h1>
 	<table class="presupuesto">
 		<thead class="headersimulator">
