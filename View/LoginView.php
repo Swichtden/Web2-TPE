@@ -9,12 +9,15 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             $this->smarty= new Smarty();
         }
 
-        function showLogin(){
-            $this->smarty->assing('Title','Login');
-            $this->smarty->display('Templetes/Login.tpl');
+        function showLogin($error=""){
+            $this->smarty->assign('Title', 'Login');
+            $this->smarty->assign('Error', $error);
+            $this->smarty->display('Templates/Login.tpl');
         }
 
-        
+        function showHome(){
+            header("Location: ".BASE_URL."home");
+        }
     }
 
 

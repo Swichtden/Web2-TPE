@@ -13,6 +13,8 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             
             $this->smarty->assign('Title', 'Lista de Presupuestos');        
             $this->smarty->assign('Budgets', $budgets);
+            session_start();
+            $this->smarty->assign('rol', $_SESSION["rol"]);
             $this->smarty->display('Templates/TableBudgets.tpl');
         }
 
@@ -30,6 +32,8 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
 
         function showMaterialesxPresupuesto($MaterialesxPresupuesto){
             $this->smarty->assign('Title','Lista de clientes por material');
+            session_start();
+            $this->smarty->assign('rol', $_SESSION["rol"]);
             $this->smarty->assign('Budgets',$MaterialesxPresupuesto);
             $this->smarty->display('Templates/TableBudgets.tpl');
         }

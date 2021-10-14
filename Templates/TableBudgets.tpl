@@ -2,37 +2,25 @@
 
 <section class="table">
 	<h1>{$Title}</h1>
+	<h1>{$rol}</h1>
 	<table class="presupuesto">
 		<thead class="headersimulator">
 			<tr >
 				<th>Nombre</th>	
-				{*<th>Monto</th>*}	
 				<th>Material</th>
 			</tr>
-			<!-- <tr>
-				<th><input type="text" name="namefilter" placeholder="John doe" required> </th>
-				<th>
-					<select type="select" name="matfilter">
-						<option value="">Todos</option>
-						<option value="PLA">PLA</option>
-						<option value="ABS">ABS</option>
-						<option value="Pet-g">Pet-g</option>
-						<option value="Tecnicos">Tecnicos</option>
-						<option value="Flex">Flex</option>
-					</select>
-				</th>
-				<th><input type="number" name="grfilter" placeholder="cantidad Gr" required></th>
-				<th><input type="number" name="hrfilter" placeholder="cantidad Hs" required></th>
-				<th><input type="number" name="budgetfilter" placeholder="Monto" required></th>
-			</tr> -->
 		</thead>
 		<tbody>
-		  {foreach from=$Budgets item=$budget}
-			  <tr>
-				  <th><a href="presupuesto/{$budget->id_cliente}">{$budget->nombre_cliente}</a></th>
-				  <th>{$budget->nombre_material}</th>
-			  </tr>
-		  {/foreach}
+			{foreach from=$Budgets item=$budget}
+				<tr>
+					<td><a href="presupuesto/{$budget->id_cliente}">{$budget->nombre_cliente}</a></td>
+					<td>{$budget->nombre_material}</td>
+					{if $rol==2}
+						<td><a href="/presupuesto/edit/{$budget->id_cliente}"<button><i class="fas fa-edit fa-fw"></i></button></a></td>
+						<td><a href="/presupuesto/delete/{$budget->id_cliente}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
+					{/if}
+				</tr>
+			{/foreach}
 		</tbody>
 	</table>
 </section>

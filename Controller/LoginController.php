@@ -1,25 +1,26 @@
 <?php
     require_once "./Model/UserModel.php";
     require_once "./View/LoginView.php";
+    
 
     class LoginController{
 
-        private $model;
-        private $view;
+        private $UserModel;
+        private $LoginView;
 
         function __construct(){
-            $this->model = new UserModel();
-            $this->view = new LoginView();
+            $this->UserModel = new UserModel();
+            $this->LoginView = new LoginView();
         }
         
         function logout(){
             session_start();
             session_destroy();
-            $this->view->showLogin("Te Deslogueaste");
+            $this->LoginView->showLogin("Te Deslogueaste");
         }
     
         function login(){
-            $this->view->showLogin();
+            $this->LoginView->showLogin();
         }
     
         function verifyLogin(){
@@ -27,16 +28,14 @@
                 $email = $_POST['email'];
                 $password = $_POST['password'];
          
-                $user = $this->model->getUser($email);
-         
+                $user = $this->UserModel->getUser($email);
                 if ($user && password_verify($password, $user->password)) {
                     session_start();
                     $_SESSION["email"] = $email;
-                    $_SESSION["rol"] = $user->rol;
-                    
-                    $this->view->showHome();
+                    $_SESSION["rol"] = $user->FK_role_id;
+                    $this->LoginView->showHome();
                 } else {
-                    $this->view->showLogin("Acceso denegado");
+                    $this->LoginView->showLogin("Acceso denegado");
                 }
             }
         }
