@@ -32,7 +32,7 @@
                 if ($user && password_verify($password, $user->password)) {
                     session_start();
                     $_SESSION["email"] = $email;
-                    $_SESSION["rol"] = $user->FK_role_id;
+                    $_SESSION["rol"] = $user->nivel_acceso;
                     $this->LoginView->showHome();
                 } else {
                     $this->LoginView->showLogin("Acceso denegado");

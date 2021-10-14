@@ -30,9 +30,22 @@ switch ($params[0]) {
         $LoginController->verifyLogin();
         break;
     case 'presupuesto':  //se agrego la tabla presupuesto con nombre del cliente y monto.
-        $TableController->showBudget($params[1]);
+        switch ($params[1]){
+            case 'edit':
+                $TableController->showBudget($params[2], 1);
+                break;
+            case 'delete':
+                var_dump($params);
+                //$TableController->deletePresupuesto($params[2]); //lo comento para no llamar al de borrar por error
+                break;
+            default:
+                $TableController->showBudget($params[1], 0);
+        }
         break;
-   case 'materiales'://se agrega los detalles de la lista materiales.
+    case 'editDB':
+        $TableController-> updatePresupuesto();
+        break;
+    case 'materiales'://se agrega los detalles de la lista materiales.
         $TableController->showMaterialesLista();
         break;
     case 'material':
@@ -43,7 +56,7 @@ switch ($params[0]) {
             echo "Seleccione una categoria";
             $TableController->showMaterialesLista();
         }
-            break;
+        break;
     default:
         echo "ERROR 404: Pagina no encontrada a";
         break;

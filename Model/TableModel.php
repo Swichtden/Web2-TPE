@@ -21,7 +21,7 @@
         }
 
         function getBudget($id_cliente){
-            $sentencia=$this->db->prepare("SELECT presupuestos.nombre_cliente,presupuestos.monto,materiales.nombre_material 
+            $sentencia=$this->db->prepare("SELECT presupuestos.id_cliente, presupuestos.nombre_cliente, presupuestos.monto, materiales.nombre_material 
                                             FROM presupuestos
                                             JOIN materiales ON presupuestos.FK_id_material=materiales.id_material
                                             WHERE presupuestos.id_cliente=?");
@@ -84,9 +84,12 @@
         }
 
         function updatePresupuesto($id, $nombre, $monto, $material){
+            $sentencia=$this->db->prepare(" SELECT materiales.id_material FROM materiales WHERE nombre_material=?"); //el usuario ingresa el nombre del material y aca lo macheo con su respectivo id
+            $sentencia->execute((array)$material);
+            $id_material=$sentencia->fetchAll(PDO::FETCH_OBJ)[0]->id_material; //tomo el string del arreglo que me devuleve
             $sentencia = $this->db->prepare("UPDATE presupuestos SET nombre_cliente=?, monto=?, FK_id_material=? 
                                              WHERE id_cliente=?");
-            $sentencia->execute(array($nombre, $monto, $material, $id));
+            $sentencia->execute(array($nombre, $monto, $id_material, $id));
         }
         
         function updateMaterial($id, $nombre, $precio, $descripcion){

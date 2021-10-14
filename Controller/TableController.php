@@ -17,9 +17,9 @@ require_once "./View/TableView.php";
             $this->TableView->showTable($budgets);
         }
 
-        function showBudget($id_cliente){
+        function showBudget($id_cliente, $edit=false){
             $budget = $this->TableModel->getBudget($id_cliente);
-            $this->TableView->showBudget($budget);
+            $this->TableView->showBudget($budget, $edit);
         }
 
         function showMaterialesLista(){
@@ -45,24 +45,25 @@ require_once "./View/TableView.php";
         }
 
         function deletePresupuesto($id){
-            $this->model->deletePresupuesto($id);
+            $this->TableModel->deletePresupuesto($id);
             $budgets = $this->TableModel->getBudgets();
             $this->TableView->showTable($budgets);
         }
         
         function deleteMaterial($id){
-            $this->model->deleteMaterial($id);
+            $this->TableModel->deleteMaterial($id);
             $materialesLista=$this->TableModel->getMaterialesLista();
             $this->TableView->showTableMateriales($materialesLista);
         }
-        function updatePresupuesto($id, $nombre, $monto, $material){
-            $this->model->updatePresupuesto($id, $nombre, $monto, $material);
+        function updatePresupuesto(){
+            //var_dump($_POST);
+            $this->TableModel->updatePresupuesto($_POST['id_cliente'], $_POST['Cliente'], $_POST['Monto'], $_POST['Material']);
             $budgets = $this->TableModel->getBudgets();
             $this->TableView->showTable($budgets);
         }
         
         function updateMaterial($id, $nombre, $precio, $descripcion){
-            $this->model->updateMaterial($id, $nombre, $precio, $descripcion);
+            $this->TableModel->updateMaterial($id, $nombre, $precio, $descripcion);
             $budgets = $this->TableModel->getBudgets();
             $this->TableView->showTable($budgets);
         }

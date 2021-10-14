@@ -18,9 +18,10 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             $this->smarty->display('Templates/TableBudgets.tpl');
         }
 
-        function showBudget($budget){  
+        function showBudget($budget, $edit){
             $this->smarty->assign('Title', 'Lista de Presupuestos');        
             $this->smarty->assign('Budget', $budget);
+            $this->smarty->assign('Edit', $edit);
             $this->smarty->display('Templates/TableBudget.tpl');
         }
 

@@ -7,7 +7,10 @@ class UserModel{
     }
 
     function getUser($email){
-        $sentencia = $this->db->prepare('SELECT * FROM usuarios WHERE email = ?');
+        $sentencia = $this->db->prepare('SELECT usuarios.email, usuarios.password, roles.nivel_acceso 
+                                         FROM usuarios 
+                                         JOIN roles ON usuarios.FK_role_id = roles.id_rol
+                                         WHERE usuarios.email = ?');
         $sentencia->execute([$email]);
         $usuario=$sentencia->fetch(PDO::FETCH_OBJ);
         var_dump($usuario);
