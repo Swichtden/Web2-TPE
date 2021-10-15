@@ -10,3 +10,4 @@
 	<script src="https://kit.fontawesome.com/25dec087b4.js" crossorigin="anonymous"></script>
 </head>
 <body>
+{include file='Templates/NavBar.tpl'}

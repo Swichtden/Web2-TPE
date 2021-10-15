@@ -1,6 +1,5 @@
-{include file='Templates/Head.tpl'}
-{include_once file='Templates/NavBar.tpl'}
-{* {include file='Templates/NavBar.tpl'} *}
+{include_once file='Templates/Head.tpl'}
+{* {include_once file='Templates/NavBar.tpl'} *}
 
 {if $rol}
 	<section>

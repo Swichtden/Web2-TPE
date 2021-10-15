@@ -1,5 +1,5 @@
 {include file='Templates/Head.tpl'}
-{include file='Templates/NavBar.tpl'}
+{* {include file='Templates/NavBar.tpl'} *}
 
 <section>
     <h1>{$Title}</h1>

@@ -2,7 +2,7 @@
 require_once "Controller/TableController.php";
 require_once "Controller/LoginController.php";
 
-define('BASE_URL',  '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/'); 
+define('BASE_URL',  '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF'])); 
 
 $TableController = new TableController;
 $LoginController = new LoginController;
