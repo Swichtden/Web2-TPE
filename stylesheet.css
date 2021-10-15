@@ -10,13 +10,13 @@ section h1{
     align-items: center;
 }
 
-.presupuesto{
-
+.centrar-tabla{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center; 
-    
-    
 }
+
 .materialform{
     color:rgb(218, 124, 24);
 }
