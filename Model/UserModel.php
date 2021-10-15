@@ -13,7 +13,7 @@ class UserModel{
                                          WHERE usuarios.email = ?');
         $sentencia->execute([$email]);
         $usuario=$sentencia->fetch(PDO::FETCH_OBJ);
-        var_dump($usuario);
+        
         return $usuario;    
     }
 

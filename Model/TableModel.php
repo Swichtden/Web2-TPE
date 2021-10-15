@@ -9,14 +9,12 @@
         }
 
         function getBudgets(){
-           // $sentencia = $this->db->prepare( "SELECT id_cliente,nombre_cliente,FK_id_material FROM presupuestos");
             $sentencia=$this->db->prepare("SELECT presupuestos.id_cliente, presupuestos.nombre_cliente, materiales.nombre_material
                                             FROM presupuestos 
                                             JOIN materiales ON presupuestos.FK_id_material=materiales.id_material
                                             ");
             $sentencia->execute();
             $presupuesto = $sentencia->fetchAll(PDO::FETCH_OBJ);
-            /* $materiales = $this->getMaterialNombre(); */
             return $presupuesto;
         }
 
@@ -37,7 +35,7 @@
             return $materiales;
         }
 
-        function getMaterialesLista(){
+        function getMateriales(){
             $sentencia=$this->db->prepare(" SELECT materiales.id_material,materiales.nombre_material,materiales.precio_material,
                                                         materiales.descripcion_material
                                             FROM materiales");
@@ -46,6 +44,15 @@
             return $materiales;
         }
         
+        function getMaterial($id_material){
+            $sentencia=$this->db->prepare("SELECT materiales.id_material, materiales.nombre_material, materiales.precio_material, materiales.descripcion_material
+                                            FROM materiales
+                                            WHERE materiales.id_material=?");
+            $sentencia->execute((array)$id_material);
+            $material=$sentencia->fetchAll(PDO::FETCH_OBJ);
+            return $material;
+        }
+
         function getMaterialesxPresupuesto($material){
             $sentencia=$this->db->prepare("SELECT presupuestos.id_cliente, presupuestos.nombre_cliente, materiales.nombre_material
                                             FROM presupuestos 
@@ -68,7 +75,7 @@
         }
         
         function insertMaterial($nombre, $precio, $descripcion){
-            $sentencia = $this->db->prepare("INSERT INTO material( nombre_material,precio_material, descripcion)
+            $sentencia = $this->db->prepare("INSERT INTO materiales( nombre_material,precio_material,descripcion_material)
                                              VALUES(?, ?, ?)");
             $sentencia->execute(array($nombre, $precio, $descripcion));
         }
@@ -79,21 +86,25 @@
         }
 
         function deleteMaterial($id){
+            try{
             $sentencia = $this->db->prepare("DELETE FROM materiales WHERE id_material=?");
             $sentencia->execute(array($id));
+            } catch(Throwable $e){
+                if ($e->errorInfo[0]=="23000")
+                    echo("No se puede eliminar una categoria que esta siendo usada");
+                else
+                    var_dump($e);
+            }
         }
 
         function updatePresupuesto($id, $nombre, $monto, $material){
-            $sentencia=$this->db->prepare(" SELECT materiales.id_material FROM materiales WHERE nombre_material=?"); //el usuario ingresa el nombre del material y aca lo macheo con su respectivo id
-            $sentencia->execute((array)$material);
-            $id_material=$sentencia->fetchAll(PDO::FETCH_OBJ)[0]->id_material; //tomo el string del arreglo que me devuleve
             $sentencia = $this->db->prepare("UPDATE presupuestos SET nombre_cliente=?, monto=?, FK_id_material=? 
                                              WHERE id_cliente=?");
-            $sentencia->execute(array($nombre, $monto, $id_material, $id));
+            $sentencia->execute(array($nombre, $monto, $material, $id));
         }
         
         function updateMaterial($id, $nombre, $precio, $descripcion){
-            $sentencia = $this->db->prepare("UPDATE presupuestos SET nombre_material=?, precio_material=?, descripcion=? 
+            $sentencia = $this->db->prepare("UPDATE materiales SET nombre_material=?, precio_material=?, descripcion_material=? 
                                              WHERE id_material=?");
             $sentencia->execute(array($nombre, $precio, $descripcion, $id));
         }

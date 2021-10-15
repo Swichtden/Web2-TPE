@@ -1,0 +1,106 @@
+body{
+    font-family: georgia, times, arial, serif;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+section h1{
+    display:flex;
+    justify-content: center;   
+    align-items: center;
+}
+
+.presupuesto{
+
+    justify-content: center;
+    align-items: center; 
+    
+    
+}
+.materialform{
+    color:rgb(218, 124, 24);
+}
+.budgetform{
+    color:rgb(218, 124, 24);
+}
+h1,h2{
+    color: rgb(218, 124, 24);
+    text-shadow: rgb(0, 0, 0) 1px 1px;
+}
+
+/* ----------------------NAVBAR------------------------- */
+nav{
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.062);
+    border-bottom: rgb(0, 0, 0) solid;
+}
+nav ul{
+    display: flex;
+    flex-direction: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+    nav ul li{
+        font-size: x-large;
+        font-weight: bold;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+    nav ul li a{
+        text-decoration: none;
+        color: rgb(218, 124, 24);
+    }
+    nav li:hover{
+        background: rgba(228, 228, 228, 0.774);
+        transition: all 0.4s linear;
+    }
+    nav ul li{
+        list-style: none;
+    }
+    
+/* ----------------------TABLA------------------------ */
+
+table {
+    overflow-x: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-spacing: 0;
+}
+    table thead{
+        padding: 10px;
+        background-color:rgb(218, 124, 24) ;
+        color:white;
+        font-size: x-large;
+    }
+    
+    table th, table td {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        text-align: left;
+    }
+    table tbody td a{
+        text-decoration: none;
+        color: rgb(218, 124, 24);
+    }
+    table tbody tr {
+        background: white;
+       
+    }
+    table td {
+        border-bottom: 1px solid #ccc;
+    }
+    .boton-tabla{
+        border: none;
+    }
+
+/* ----------------------FORM------------------------ */
+
+section form{
+    display:flex;
+    justify-content: center;   
+    align-items: center;
+}

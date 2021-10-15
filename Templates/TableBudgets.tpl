@@ -1,14 +1,11 @@
-{include file='Templates/Header.tpl'}
+{include file='Templates/Head.tpl'}
+{include file='Templates/NavBar.tpl'}
 
 <section class="table">
-	<nav>
-	<ul>
-		<li>
-			<a href="login"></a>
-		</li>
-	</ul>
-	</nav>
 	<h1>{$Title}</h1>
+	{if $rol}
+		{include file='Templates/BudgetForm.tpl'}
+	{/if}
 	<table class="presupuesto">
 		<thead class="headersimulator">
 			<tr >
@@ -22,8 +19,8 @@
 					<td><a href="presupuesto/{$budget->id_cliente}">{$budget->nombre_cliente}</a></td>
 					<td>{$budget->nombre_material}</td>
 					{if $rol}
-						<td><a href="/presupuesto/edit/{$budget->id_cliente}"<button><i class="fas fa-edit fa-fw"></i></button></a></td>
-						<td><a href="/presupuesto/delete/{$budget->id_cliente}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
+						<td class="boton-tabla"><a href="/presupuesto/edit/{$budget->id_cliente}"<button><i class="fas fa-edit fa-fw"></i></button></a></td>
+						<td class="boton-tabla"><a href="/presupuesto/delete/{$budget->id_cliente}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
 					{/if}
 				</tr>
 			{/foreach}

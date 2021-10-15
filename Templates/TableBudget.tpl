@@ -1,18 +1,10 @@
-{include file='Templates/Header.tpl'}
+{include file='Templates/Head.tpl'}
+{include file='Templates/NavBar.tpl'}
 
-<section class="table">
+<section>
     <h1>{$Title}</h1>
-	{if $Edit}
-		<form action="editDB" method="post">
-			<input type="hidden" name="id_cliente" value="{$Budget[0]->id_cliente}">
-			<label for="Cliente">Cliente:</label>
-			<input type="text" id="Cliente" name="Cliente" value="{$Budget[0]->nombre_cliente}">
-			<label for="Monto">Monto:</label>
-			<input type="text" id="Monto" name="Monto" value="{$Budget[0]->monto}">
-			<label for="Material">Material:</label>
-			<input type="text" id="Material" name="Material" value="{$Budget[0]->nombre_material}">
-			<input type="submit" value="Editar">
-		</form>
+	{if $Edit && $rol}
+		{include file='Templates/BudgetForm.tpl'}
 	{else}
 		<ul>
 			<li>Cliente: {$Budget[0]->nombre_cliente}</li>

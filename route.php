@@ -29,32 +29,67 @@ switch ($params[0]) {
     case 'verifyLogin':
         $LoginController->verifyLogin();
         break;
+    case 'presupuestos':
+        $TableController->showBudgets();
+        break;
     case 'presupuesto':  //se agrego la tabla presupuesto con nombre del cliente y monto.
-        switch ($params[1]){
-            case 'edit':
-                $TableController->showBudget($params[2], 1);
-                break;
-            case 'delete':
-                var_dump($params);
-                //$TableController->deletePresupuesto($params[2]); //lo comento para no llamar al de borrar por error
-                break;
-            default:
-                $TableController->showBudget($params[1], 0);
+        if (isset($params[1]))
+            switch ($params[1]){
+                case 'edit':
+                    $TableController->showBudget($params[2], 1);
+                    break;
+                case 'delete':
+                    $TableController->deletePresupuesto($params[2]); //lo comento para no llamar al de borrar por error
+                    break;
+                default:
+                    $TableController->showBudget($params[1], 0);
+            }
+        else{
+            echo ("Seleccione un presupuesto");
+            $TableController->showBudgets();
         }
         break;
-    case 'editDB':
+    case 'createPresupuesto':
+        $TableController->createPresupuesto();
+        break;
+    case 'editPresupuesto':
         $TableController-> updatePresupuesto();
         break;
-    case 'materiales'://se agrega los detalles de la lista materiales.
-        $TableController->showMaterialesLista();
+    case 'materiales':
+            $TableController->showMateriales();
+            break;
+    case 'material'://se agrega los detalles de la lista materiales.
+        if (isset($params[1]))
+            switch ($params[1]){
+                case 'edit':
+                    $TableController->showMaterial($params[2], 1);
+                    break;
+                case 'delete':
+                    $TableController->deleteMaterial($params[2]); //lo comento para no llamar al de borrar por error
+                    break;
+                default:
+                    echo("Esa funcion no existe");
+                    $TableController->showMateriales();
+            }
+        else{
+            echo ("Seleccione un material");
+            $TableController->showMateriales();
+        }
         break;
-    case 'material':
+
+    case 'createMaterial':
+            $TableController->createMaterial();
+        break;
+    case 'editMaterial':
+            $TableController->updateMaterial();
+        break;       
+    case 'filtroMaterial':
         if (!empty($params[1])){
-            $TableController->showMaterialesxPresupuesto($params[1]);
+            $TableController->showPresupuestosXMaterial($params[1]);
         }
         else{
             echo "Seleccione una categoria";
-            $TableController->showMaterialesLista();
+            $TableController->showMateriales();
         }
         break;
     default:
