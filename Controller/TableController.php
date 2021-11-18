@@ -1,18 +1,22 @@
 <?php
 require_once "./Model/TableModel.php";
 require_once "./View/TableView.php";
+require_once "./Helpers/AuthHelper.php";
 
     class TableController{
 
         private $TableModel;
         private $TableView;
+        private $AuthHelper;
 
         function __construct(){
                 $this -> TableModel = new TableModel();
                 $this -> TableView = new TableView();
+                $this -> AuthHelper = new authHelper();
         }
 
         function showBudgets(){
+
             $budgets = $this->TableModel->getBudgets();
             $listaMateriales = $this->TableModel->getMateriales();
             $this->TableView->showTable($budgets, "Lista de Presupuestos", $listaMateriales);
@@ -41,7 +45,7 @@ require_once "./View/TableView.php";
         }
 
         function createPresupuesto(){
-            
+            $this->AuthHelper->UserIsLogged();
             $this->TableModel->insertPresupuesto($_POST['Cliente'], $_POST['Monto'], $_POST['Material']);
             $budgets = $this->TableModel->getBudgets();
             $listaMateriales = $this->TableModel->getMateriales();
@@ -49,15 +53,14 @@ require_once "./View/TableView.php";
         }
     
         function createMaterial(){
+            
             $this->TableModel->insertMaterial($_POST['Material'], $_POST['Precio'], $_POST['Descripcion']);
             $materiales=$this->TableModel->getMateriales();
             $this->TableView->showTableMateriales($materiales);
         }
 
         function deletePresupuesto($id){
-            if (session_status()!=2)
-                session_start();
-            if (isset($_SESSION["rol"]) && $_SESSION["rol"]){
+            if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
                 $this->TableModel->deletePresupuesto($id);
                 
             }else{
@@ -69,11 +72,8 @@ require_once "./View/TableView.php";
             }
         
         function deleteMaterial($id){
-            if (session_status()!=2)
-                session_start();
-            if (isset($_SESSION["rol"]) && $_SESSION["rol"]){
+            if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
                 $this->TableModel->deleteMaterial($id);
-               
             }else{
                 echo("Usted no tiene permisos para realizar esta accion!");
             }
