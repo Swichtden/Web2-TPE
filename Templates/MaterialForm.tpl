@@ -1,7 +1,7 @@
 {include_once file='Templates/Head.tpl'}
 {* {include_once file='Templates/NavBar.tpl'} *}
 
-{if $rol}
+{if $role == 2}
 	<section>
 		{if $Edit}<h1>{$Title}</h1>{/if}
 		<form class="materialform" {if $Edit}action="editMaterial" {else}action="createMaterial"{/if} method="post">

@@ -3,7 +3,7 @@
 
 <section>
     <h1>{$Title}</h1>
-	{if $Edit && $rol}
+	{if $Edit && $role == 2}
 		{include file='Templates/BudgetForm.tpl'}
 	{else}
 		<ul>

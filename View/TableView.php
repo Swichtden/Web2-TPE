@@ -17,10 +17,10 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             $this->smarty->assign('Edit', false);
             if (session_status()!=2)
                 session_start();
-            if (isset($_SESSION["rol"]))
-                $this->smarty->assign('rol', $_SESSION["rol"]);
+            if (isset($_SESSION["role"]))
+                $this->smarty->assign('role', $_SESSION["role"]);
             else
-                $this->smarty->assign('rol', 0);
+                $this->smarty->assign('role', 0);
             $this->smarty->display('Templates/TableBudgets.tpl');
         }
 
@@ -31,10 +31,10 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             $this->smarty->assign('Edit', $edit);
             if (session_status()!=2)
                 session_start();
-            if (isset($_SESSION["rol"]))
-                $this->smarty->assign('rol', $_SESSION["rol"]);
+            if (isset($_SESSION["role"]))
+                $this->smarty->assign('role', $_SESSION["role"]);
             else
-                $this->smarty->assign('rol', 0);
+                $this->smarty->assign('role', 0);
             $this->smarty->display('Templates/TableBudget.tpl');
         }
 
@@ -44,10 +44,10 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             $this->smarty->assign('Edit', true);
             if (session_status()!=2)
                 session_start();
-            if (isset($_SESSION["rol"]))
-                $this->smarty->assign('rol', $_SESSION["rol"]);
+            if (isset($_SESSION["role"]))
+                $this->smarty->assign('role', $_SESSION["role"]);
             else
-                $this->smarty->assign('rol', 0);
+                $this->smarty->assign('role', 0);
             $this->smarty->display('Templates/MaterialForm.tpl');
         }
 
@@ -57,10 +57,10 @@ require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
             $this->smarty->assign('Edit', false);
             if (session_status()!=2)
                 session_start();
-            if (isset($_SESSION["rol"]))
-                $this->smarty->assign('rol', $_SESSION["rol"]);
+            if (isset($_SESSION["role"]))
+                $this->smarty->assign('role', $_SESSION["role"]);
             else
-                $this->smarty->assign('rol', 0);
+                $this->smarty->assign('role', 0);
             $this->smarty->display('Templates/TableMateriales.tpl');
         }
     }

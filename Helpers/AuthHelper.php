@@ -5,10 +5,15 @@
 
         function __construct(){}
 
-        function UserIsLogged(){
+        function UserIsLogged($redirect = true){
             session_start();
             if(!isset($_SESSION["email"])){
-                header("Location: ".BASE_URL."login");
+                if ($redirect){
+                    header("Location: ".BASE_URL."login");
+                }
+                else{
+                    return false;
+                }
             }
         }
 

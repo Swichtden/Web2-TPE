@@ -3,7 +3,7 @@
 
 <section>
 	<h1>{$Title}</h1>
-	{if $rol}
+	{if $role==2}
 		 {include file='Templates/MaterialForm.tpl'}
 	{/if}
 	<table>
@@ -20,7 +20,7 @@
 				  	<td><a href="filtroMaterial/{$material->id_material}">{$material->nombre_material}</a></td>
 				  	<td>{$material->precio_material}</td>
 				  	<td>{$material->descripcion_material}</td>
-				  	{if $rol}
+				  	{if $role==2}
 						<td class="boton-tabla"><a href="/material/edit/{$material->id_material}"<button><i class="fas fa-edit fa-fw"></i></button></a></td>
 						<td class="boton-tabla"><a href="/material/delete/{$material->id_material}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
 					{/if}

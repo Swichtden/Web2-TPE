@@ -45,16 +45,22 @@ require_once "./Helpers/AuthHelper.php";
         }
 
         function createPresupuesto(){
-            $this->AuthHelper->UserIsLogged();
-            $this->TableModel->insertPresupuesto($_POST['Cliente'], $_POST['Monto'], $_POST['Material']);
+            if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
+                $this->TableModel->insertPresupuesto($_POST['Cliente'], $_POST['Monto'], $_POST['Material']);
+            }else{
+                    echo("Usted no tiene permisos para realizar esta accion!");
+                }
             $budgets = $this->TableModel->getBudgets();
             $listaMateriales = $this->TableModel->getMateriales();
             $this->TableView->showTable($budgets, "Lista de Presupuestos",$listaMateriales);
         }
     
         function createMaterial(){
-            
-            $this->TableModel->insertMaterial($_POST['Material'], $_POST['Precio'], $_POST['Descripcion']);
+            if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
+                $this->TableModel->insertMaterial($_POST['Material'], $_POST['Precio'], $_POST['Descripcion']); 
+            }else{
+                    echo("Usted no tiene permisos para realizar esta accion!");
+                }
             $materiales=$this->TableModel->getMateriales();
             $this->TableView->showTableMateriales($materiales);
         }
@@ -81,14 +87,22 @@ require_once "./Helpers/AuthHelper.php";
                 $this->TableView->showTableMateriales($materiales);
         }
         function updatePresupuesto(){
-            $this->TableModel->updatePresupuesto($_POST['id_cliente'], $_POST['Cliente'], $_POST['Monto'], $_POST['Material']);
+            if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
+                $this->TableModel->updatePresupuesto($_POST['id_cliente'], $_POST['Cliente'], $_POST['Monto'], $_POST['Material']);
+            }else{
+                echo("Usted no tiene permisos para realizar esta accion!");
+            }
             $budgets = $this->TableModel->getBudgets();
             $listaMateriales = $this->TableModel->getMateriales();
             $this->TableView->showTable($budgets, "Lista de Presupuestos",$listaMateriales);
         }
         
         function updateMaterial(){
-            $this->TableModel->updateMaterial($_POST['id_material'],$_POST['Material'], $_POST['Precio'], $_POST['Descripcion']);
+            if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
+                $this->TableModel->updateMaterial($_POST['id_material'],$_POST['Material'], $_POST['Precio'], $_POST['Descripcion']);
+            }else{
+                echo("Usted no tiene permisos para realizar esta accion!");
+            }
             $materiales = $this->TableModel->getMateriales();
             $this->TableView->showTableMateriales($materiales);
         }

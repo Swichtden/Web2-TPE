@@ -23,6 +23,9 @@ switch ($params[0]) {
     case 'login':
         $LoginController->login();
         break;
+    case 'signIn':
+        $LoginController->signIn();
+        break;
     case 'logout':
         $LoginController->logout();
         break;
@@ -91,6 +94,10 @@ switch ($params[0]) {
             echo "Seleccione una categoria";
             $TableController->showMateriales();
         }
+        break;
+
+    case 'usuarios':
+        $LoginController->showUsers();
         break;
     default:
         echo "ERROR 404: Pagina no encontrada a";
