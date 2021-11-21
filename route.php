@@ -68,7 +68,7 @@ switch ($params[0]) {
                     $TableController->showMaterial($params[2], 1);
                     break;
                 case 'delete':
-                    $TableController->deleteMaterial($params[2]); //lo comento para no llamar al de borrar por error
+                    $TableController->deleteMaterial($params[2]);
                     break;
                 default:
                     echo("Esa funcion no existe");
@@ -95,9 +95,21 @@ switch ($params[0]) {
             $TableController->showMateriales();
         }
         break;
-
     case 'usuarios':
         $LoginController->showUsers();
+        break;
+    case 'user':
+        if (isset($params[1]) && isset($params[2]))
+            switch ($params[1]){
+                case 'edit':
+                    $LoginController->updateRoleUser($params[2]);
+                    break;
+                case 'delete':
+                    $LoginController->deleteUser($params[2]);
+                    break;
+                default:
+                    $LoginController->showUsers();
+            }
         break;
     default:
         echo "ERROR 404: Pagina no encontrada a";

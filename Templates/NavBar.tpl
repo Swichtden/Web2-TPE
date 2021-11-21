@@ -8,7 +8,7 @@
 			{/if}
 			<li><a href="presupuestos">Lista de Presupuestos</a></li>
 			<li><a href="materiales">Lista de Materiales</a></li>
-			{if $smarty.session.role == "2"}
+			{if isset($smarty.session.email) && $smarty.session.role == "2"}
 				<li><a href="usuarios">Lista de Usuarios</a></li>
 			{/if}
 	</ul>

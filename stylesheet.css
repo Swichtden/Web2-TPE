@@ -93,7 +93,7 @@ table {
     table td {
         border-bottom: 1px solid #ccc;
     }
-    .boton-tabla{
+    #buttons{
         border: none;
     }
 

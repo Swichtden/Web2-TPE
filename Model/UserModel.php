@@ -43,13 +43,13 @@ class UserModel{
     }
     
     function updateUser($id, $role){
-        $sentencia=$this->db->prepare("UPDATE usuarios SET FK_role_id=? WHERE id=?");
-        $sentencia->execute(array($role,$id));
+        $sentencia=$this->db->prepare("UPDATE usuarios SET FK_role_id=? WHERE id_user=?");
+        $sentencia  ->execute(array($role,$id));
     }
 
     function deleteUser($id){
-        $sentencia=$this->db->prepare("DELETE FROM usuarios WHERE id=?");
-        $sentencia->execute(array($id));
+        $sentencia=$this->db->prepare("DELETE FROM usuarios WHERE id_user=?");
+        $sentencia->execute([$id]);
     }
     
 
