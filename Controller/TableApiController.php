@@ -13,6 +13,7 @@ class ApiTaskController{
     function __construct(){
         $this->MaterialModel = new MaterialModel();
         $this->PresupuestoModel = new PresupuestoModel();
+        $this->ComentarioModel = new ComentarioModel();
         $this->view = new ApiView();
     }
 
