@@ -93,7 +93,7 @@ table {
     table td {
         border-bottom: 1px solid #ccc;
     }
-    #buttons{
+    table td.buttons{
         border: none;
     }
 

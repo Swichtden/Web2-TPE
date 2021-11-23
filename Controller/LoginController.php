@@ -84,7 +84,8 @@
            
             if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
                 $this->UserModel->updateUser($id, $role);
-                $this->LoginView->showLogin("usuario $id se cambio el role");
+                $users = $this->UserModel->getUsers();
+                $this->LoginView->showUsers($users,"se cambio el rol del usuario");
             }else{
                     echo("Usted no tiene permisos para realizar esta accion!");
                 }
@@ -95,7 +96,7 @@
             if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
                 $this->UserModel->deleteUser($id);
                 $users = $this->UserModel->getUsers();
-                $this->LoginView->showUsers($users,"usuario $id eliminado");
+                $this->LoginView->showUsers($users,"usuario eliminado");
             }else{
                     echo("Usted no tiene permisos para realizar esta accion!");
                 }

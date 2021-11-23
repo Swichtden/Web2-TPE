@@ -16,9 +16,11 @@
 				{foreach from=$Users item=$user}
 					<tr>
 						<td>{$user->email}</a></td>
-						<td id="id{$user->id_user}" data-id_rol="{$user->id_rol}">{$user->nombre_rol}</td>
-						<td data-id_user="{$user->id_user}" id="buttons"><a data-id_user="{$user->id_user}" href="/user/edit/{$user->id_user}"<button><i data-id_user="{$user->id_user}" class="fas fa-edit fa-fw"></i></button></a>
-						<a href="/user/delete/{$user->id_user}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
+						<td id="id{$user->id_user}" data-nombre_rol="{$user->nombre_rol}">{$user->nombre_rol}</td>
+						<td data-id_user="{$user->id_user}" class="buttons">
+							<a href="/user/edit/{$user->id_user}" class="edit"<button><i class="fas fa-edit fa-fw"></i></button></a>
+							<a href="/user/delete/{$user->id_user}"<button><i class="fas fa-trash fa-fw"></i></button></a>
+						</td>
 					</tr>
 				{/foreach}
 			</tbody>
