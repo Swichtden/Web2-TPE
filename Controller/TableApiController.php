@@ -1,6 +1,7 @@
 <?php
 require_once "./Model/MaterialesModel.php";
 require_once "./Model/PresupuestoModel.php";
+require_once "./Model/ComentarioModel.php";
 require_once "./View/ApiView.php";
 
 class ApiTaskController{
