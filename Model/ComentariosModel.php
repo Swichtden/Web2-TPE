@@ -14,11 +14,11 @@
         return $comentario;
         }
 
-        function getComentsBook($id){
+        function getComentsPresupuesto($id){
             $sentencia = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.texto, comentarios.puntuacion, 
-                                            comentarios.id_libro_fk, comentarios.id_usuario_fk, usuario.nombre, usuario.apellido 
+                                            comentarios.id_presupuesto_fk, comentarios.id_usuario_fk 
                                             FROM comentarios JOIN usuario ON comentarios.id_usuario_fk=usuario.id_usuario
-                                            WHERE comentarios.id_libro_fk= ?");
+                                            WHERE comentarios.id_presupuesto_fk= ?");
             $sentencia->execute([$id]);
             $comentario = $sentencia->fetchAll(PDO::FETCH_OBJ); 
             return $comentario;
