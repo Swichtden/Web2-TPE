@@ -37,7 +37,6 @@ function cancelEdit(e){
 }
 
 function save(e){
-	console.log("save");
 	let userId = e.target.closest(".buttons").dataset.id_user;
 	let roleCell = document.querySelector(`#id${userId}`);
 	let newRole = roleCell.firstElementChild.value;
