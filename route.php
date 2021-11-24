@@ -102,7 +102,10 @@ switch ($params[0]) {
         if (isset($params[1]) && isset($params[2]))
             switch ($params[1]){
                 case 'edit':
-                    $LoginController->updateRoleUser($params[2]);
+                    if (!empty($_POST))
+                        $LoginController->updateRoleUser($params[2]);
+                    else
+                        $LoginController->showUsers();
                     break;
                 case 'delete':
                     $LoginController->deleteUser($params[2]);
