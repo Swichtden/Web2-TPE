@@ -23,28 +23,32 @@ class ApiTaskController{
         return json_decode($this->data); 
         }
 
+    private function getBody() {
+        $bodyString = file_get_contents("php://input");
+        return json_decode($bodyString);
+    }
 
     function coment($params){
 
-        $body= $this->getData();
-
+        //$body= $this->getData(); //no se si anda
+        $body= $this->getBody();
 
         $puntaje= $body->puntaje;
         $comentario= $body->detalle;
         $idUser= $body->idUser;
         $idCliente= $params[':ID'];
         if ($this->AuthHelper->getRole()==1){   //1 =usuario 
-            $resultado= $this->modelComentarios->newCommentary( $puntaje, $detalle, $idClinete, $idUser);
-        header("Location: " . BASE_URL . 'comPresupuesto/' . $idCliente); //verificar que comPresupuesto/ ande bien 
+                $id = $this->model->insertTask($body->puntaje, $body->detalle, $body->idUser, $body->$params[':ID']);
+                if ($id){
+                        $this->view->response("Se agregado el comentario", 200);
+                    }
+                    else{
+                        $this->view->response("No se puedo agregar el comentario", 500);
+                    }
         }else{
                 echo("Usted no tiene permisos para realizar esta accion!");
             }
-        if ($resultado){
-            $this->view->response("Se agregado el comentario", 200);
-        }
-        else{
-            $this->view->response("No se puedo agregar el comentario", 500);
-        }
+        
     }
 
     function deleteComent($params){
@@ -61,7 +65,9 @@ class ApiTaskController{
         }else{
             echo("Usted no tiene permisos para realizar esta accion!");
         }
-        
     }
+
+
+    
 }
 ?>
