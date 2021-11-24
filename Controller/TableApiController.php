@@ -1,6 +1,7 @@
 <?php
 require_once "./Model/MaterialesModel.php";
 require_once "./Model/PresupuestoModel.php";
+require_once "./Helpers/AuthHelper.php";
 require_once "./Model/ComentarioModel.php";
 require_once "./View/ApiView.php";
 
@@ -22,19 +23,22 @@ class ApiTaskController{
         return json_decode($this->data); 
         }
 
+
     function coment($params){
 
         $body= $this->getData();
 
 
-        $comentario= $body->comentario;
         $puntaje= $body->puntaje;
+        $comentario= $body->detalle;
         $idUser= $body->idUser;
-        $idPresupuesto= $params[':ID'];
-
-        $resultado= $this->modelComentarios->newCommentary($comentario, $puntaje, $idPresupuesto, $idUser);
-        header("Location: " . BASE_URL . 'comPresupuesto/' . $idPresupuesto); //verificar que comPresupuesto/ ande bien
-
+        $idCliente= $params[':ID'];
+        if ($this->AuthHelper->getRole()==1){   //1 =usuario 
+            $resultado= $this->modelComentarios->newCommentary( $puntaje, $detalle, $idClinete, $idUser);
+        header("Location: " . BASE_URL . 'comPresupuesto/' . $idCliente); //verificar que comPresupuesto/ ande bien 
+        }else{
+                echo("Usted no tiene permisos para realizar esta accion!");
+            }
         if ($resultado){
             $this->view->response("Se agregado el comentario", 200);
         }
@@ -43,17 +47,21 @@ class ApiTaskController{
         }
     }
 
-    public function deleteComent($params){
+    function deleteComent($params){
         $id = $params[':ID'];
         $comentario = $this->modelComentarios->getById($id);
-
-        if ($comentario) {
-            $this->modelComentarios->delete($id);
-            $this->view->response("El comentario con id {$id} se eliminó correctamente", 200);
+        if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
+            if ($comentario) {
+                $this->modelComentarios->delete($id);
+                $this->view->response("El comentario con id {$id} se eliminó correctamente", 200);
+            }
+            else{
+                $this->view->response("No existe comentario para eliminar con id {$id}", 404);
+            } 
+        }else{
+            echo("Usted no tiene permisos para realizar esta accion!");
         }
-        else{
-            $this->view->response("No existe comentario para eliminar con id {$id}", 404);
-        }
+        
     }
 }
 ?>
