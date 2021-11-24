@@ -7,13 +7,13 @@ require_once "./View/ApiView.php";
 
 class ApiTaskController{
 
-    private $MaterialModel;
-    private $PresupuestoModel;
+    private $AuthHelper;
+    private $ComentarioModel;
     private $view;
 
     function __construct(){
-        $this->MaterialModel = new MaterialModel();
-        $this->PresupuestoModel = new PresupuestoModel();
+       
+        $this->AuthHelper = new AuthHelper();
         $this->ComentarioModel = new ComentarioModel();
         $this->view = new ApiView();
     }
@@ -68,6 +68,6 @@ class ApiTaskController{
     }
 
 
-    
+
 }
 ?>

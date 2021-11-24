@@ -1,6 +1,5 @@
 <?php
 require_once 'Libs/Router.php';
-require_once 'Controller/UserApiController.php';
 require_once 'Controller/TableApiController.php';
 
 $router = new Router();
