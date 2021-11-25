@@ -33,6 +33,7 @@
                 $user = $this->UserModel->getUser($email);
                 if ($user && password_verify($password, $user->password)) {
                     session_start();
+                    $_SESSION['id'] = $user->id_user;
                     $_SESSION["email"] = $email;
                     $_SESSION["role"] = $user->nivel_acceso;
                     $this->LoginView->showHome();
@@ -42,9 +43,7 @@
             }
         }
     
-        // function showSignIn(){
-        //     $this->LoginView->showSignIn();
-        // }
+       
 
         function signIn(){
             

@@ -7,7 +7,7 @@ class UserModel{
     }
 
     function getUser($email){
-        $sentencia = $this->db->prepare('SELECT usuarios.email, usuarios.password, roles.nivel_acceso 
+        $sentencia = $this->db->prepare('SELECT usuarios.id_user, usuarios.email, usuarios.password, roles.nivel_acceso 
                                          FROM usuarios 
                                          JOIN roles ON usuarios.FK_role_id = roles.id_rol
                                          WHERE usuarios.email = ?');

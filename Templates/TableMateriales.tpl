@@ -1,5 +1,5 @@
 {include_once file='Templates/Head.tpl'}
-{* {include_once file='Templates/NavBar.tpl'} *}
+
 
 <section>
 	<h1>{$Title}</h1>
@@ -21,8 +21,8 @@
 				  	<td>{$material->precio_material}</td>
 				  	<td>{$material->descripcion_material}</td>
 				  	{if $role==2}
-						<td class="boton-tabla"><a href="/material/edit/{$material->id_material}"<button><i class="fas fa-edit fa-fw"></i></button></a></td>
-						<td class="boton-tabla"><a href="/material/delete/{$material->id_material}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
+						<td class="buttons"><a href="/material/edit/{$material->id_material}"<button><i class="fas fa-edit fa-fw"></i></button></a></td>
+						<td class="buttons"><a href="/material/delete/{$material->id_material}"<button><i class="fas fa-trash fa-fw"></i></button></a></td>
 					{/if}
 			  	</tr>
 		  	{/foreach}

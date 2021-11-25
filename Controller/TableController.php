@@ -4,18 +4,24 @@ require_once "./Model/PresupuestoModel.php";
 require_once "./View/TableView.php";
 require_once "./Helpers/AuthHelper.php";
 
+require_once "./Model/ComentariosModel.php";
+
     class TableController{
 
-        private $MaterialesModel;
+        private $MaterialModel;
         private $PresupuestoModel;
         private $TableView;
         private $AuthHelper;
+
+        private $ComentarioModel;
 
         function __construct(){
                 $this -> MaterialModel = new MaterialModel();
                 $this -> PresupuestoModel = new PresupuestoModel();
                 $this -> TableView = new TableView();
                 $this -> AuthHelper = new authHelper();
+                
+                $this->ComentarioModel = new ComentarioModel();
         }
 
         function showBudgets(){
@@ -25,10 +31,12 @@ require_once "./Helpers/AuthHelper.php";
             $this->TableView->showTable($budgets, "Lista de Presupuestos", $listaMateriales);
         }
 
-        function showBudget($id_cliente, $edit=false){
+        function showBudget($id_cliente, $edit=false, $message=""){
             $budget = $this->PresupuestoModel->getBudget($id_cliente);
             $listaMateriales = $this->MaterialModel->getMateriales();
-            $this->TableView->showBudget($budget, $listaMateriales, $edit);
+            $listaComentarios=$this->ComentarioModel->getComments($id_cliente);
+            
+            $this->TableView->showBudget($budget,$listaComentarios, $listaMateriales, $edit, $message);
         }
 
         function showMateriales(){
@@ -110,4 +118,13 @@ require_once "./Helpers/AuthHelper.php";
             $this->TableView->showTableMateriales($materiales);
         }
 
+        function agregarComentario($id){
+            if ($this->AuthHelper->getRole()>=1){   //1 =usuario registrado
+                $this->TableView->agregarComentario($id);
+            }else{
+                echo("Usted no tiene permisos para realizar esta accion!");
+            }
+        }
+
+       
     }

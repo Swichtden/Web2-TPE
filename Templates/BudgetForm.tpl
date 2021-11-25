@@ -11,6 +11,6 @@
 		{/foreach}
 			</select>
 			
-	{* <input type="text" id="Material" name="Material" {if $Edit}value="{$Budget[0]->nombre_material}{/if}"> *}
+	
 	<input type="submit" {if $Edit}value="Editar"{else}value="Agregar"{/if}>
 </form>

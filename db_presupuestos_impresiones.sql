@@ -42,6 +42,7 @@ CREATE TABLE `comentarios` (
 INSERT INTO `comentarios` (`id_comentario`, `puntaje`, `detalle`, `FK_id_cliente`, `FK_id_user`) VALUES
 (1, '4', 'Buena relacion precio/calidad', 21, 14),
 (2, '5', 'Excelente', 13, 15);
+(3, '1', 'Malo', 13, 25);
 
 -- --------------------------------------------------------
 

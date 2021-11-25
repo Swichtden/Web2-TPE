@@ -6,7 +6,9 @@
         function __construct(){}
 
         function UserIsLogged($redirect = true){
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
             if(!isset($_SESSION["email"])){
                 if ($redirect){
                     header("Location: ".BASE_URL."login");
@@ -23,6 +25,20 @@
                 return $_SESSION["role"]; /* Esto devuelve un int que representa el nivel de acceso */
             }
             return 0;
+        }
+
+        function getUserId(){
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            if(!isset($_SESSION)){
+                session_start();
+            }
+            if (isset($_SESSION["id"])){
+                return $_SESSION["id"]; 
+            }else{
+                return "";
+            }
         }
     }
 ?>

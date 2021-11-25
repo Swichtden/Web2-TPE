@@ -1,5 +1,5 @@
 {include_once file='Templates/Head.tpl'}
-{* {include_once file='Templates/NavBar.tpl'} *}
+
 
 {if $role == 2}
 	<section>

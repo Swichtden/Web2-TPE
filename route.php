@@ -114,8 +114,20 @@ switch ($params[0]) {
                     $LoginController->showUsers();
             }
         break;
+    case 'agregarcomentario':
+        if (isset($params[1]) && !empty($params[1])){
+            echo ("rute agregarcomentario");
+            $TableController->agregarComentario($params[1]);
+        }
+        else{
+            echo '<script language="javascript">';
+            echo 'alert("Seleccione el presupuesto al que desea agregar un comentario")';
+            echo '</script>';
+            $TableController->showBudgets();
+        }
+        break;
     default:
-        echo "ERROR 404: Pagina no encontrada a";
+        echo "ERROR 404: Pagina no encontrada";
         break;
     }
 
