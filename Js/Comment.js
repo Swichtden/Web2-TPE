@@ -19,7 +19,7 @@ async function addComment(e){
 	else {
 		try {
 			let res = await fetch(url, {
-				"method": "PUT",
+				"method": "POST",
 				"headers": { "Content-type": "application/json" },
 				"body": JSON.stringify(comentario)
 			});
