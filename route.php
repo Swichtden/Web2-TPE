@@ -116,7 +116,6 @@ switch ($params[0]) {
         break;
     case 'agregarcomentario':
         if (isset($params[1]) && !empty($params[1])){
-            echo ("rute agregarcomentario");
             $TableController->agregarComentario($params[1]);
         }
         else{

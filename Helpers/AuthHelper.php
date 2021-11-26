@@ -20,7 +20,7 @@
         }
 
         function getRole(){
-            $this->UserIsLogged();
+            $this->UserIsLogged(false);
             if (isset($_SESSION["role"])){
                 return $_SESSION["role"]; /* Esto devuelve un int que representa el nivel de acceso */
             }
