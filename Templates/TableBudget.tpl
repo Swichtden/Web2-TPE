@@ -15,8 +15,10 @@
 		</ul>
 		{if $Comentarios != false }
 				<ul>
-					<li>Comentario:{$Comentarios->detalle}</li>
-					<li>Puntaje:{$Comentarios->puntaje}</li> 	
+					{foreach from=$Comentarios item=$Comentario}
+						<li>Comentario:{$Comentario->detalle}</li>
+						<li>Puntaje:{$Comentario->puntaje}</li> 	
+					{/foreach}
 					{if $role==2}
 						<button class="buttons" id="delete" data-id_comentario="{$Comentarios->id_comentario}" data-id_presupuesto="{$Comentarios->FK_id_cliente}"><i class="fas fa-trash fa-fw"></i></button>
 					{/if}

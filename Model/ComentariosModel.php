@@ -36,9 +36,9 @@
         }
 
         function getComments($id){
-            $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE FK_id_cliente=? LIMIT 5");
+            $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE FK_id_cliente=?");
             $sentencia->execute((array)$id);
-            $comentarios= $sentencia->fetch(PDO::FETCH_OBJ);
+            $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
             return $comentarios;
         }
         
