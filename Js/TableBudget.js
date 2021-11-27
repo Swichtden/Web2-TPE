@@ -15,6 +15,9 @@ async function getComments() {
 			res.json().then(data => {
 				let listaComentarios = document.querySelector("#listaComentarios");
 				listaComentarios.innerHTML = "";
+				if (data.length == 0) {
+					listaComentarios.innerHTML = `<p>No hay comentarios</p>`;
+				};
 				for (let comentario of data) {
 					let lista = document.createElement("ul");
 					lista.classList.add("lista-comentarios");
