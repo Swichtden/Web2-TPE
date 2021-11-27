@@ -1,5 +1,4 @@
 {include file='Templates/Head.tpl'}
-{* {include file='Templates/NavBar.tpl'} *}
 
 <section class="table">
 	<h1>{$Title}</h1>
@@ -27,7 +26,5 @@
 		</table>
 	</div>
 </section>
-
 <script type='text/javascript' src='/Js/EditUser.js'></script>
-
 {include file='Templates/Footer.tpl'}

@@ -9,51 +9,47 @@ class CommentsApiController{
     private $AuthHelper;
     private $ComentarioModel;
     private $view;
-    private $TableController;
 
     function __construct(){
        
         $this->AuthHelper = new AuthHelper();
         $this->ComentarioModel = new ComentarioModel();
         $this->view = new ApiView();
-        $this->TableController = new TableController();
-
-        $this->data= file_get_contents("php://input");
     }
 
-    function getData(){
-        return json_decode($this->data);
+    private function getBody() {
+        $bodyString = file_get_contents("php://input");
+        return json_decode($bodyString);
     }
 
-   
+    function getComments($data){
+        $comentarios = $this->ComentarioModel->getComments($data[':ID_Budget']);
+        $this->view->response($comentarios,200);
+    }
 
-    function AddComentary($params=null){
-        $puntaje= $_POST['Puntaje'];
-        $comentario= $_POST['Comentario'];
+    function AddComment(){
+        $data = $this->getBody();
         $idUser = $this->AuthHelper->getUserId();
-        $idPresupuesto = $params[':ID'];
         if ($this->AuthHelper->getRole()>=1){   //1 =usuario 
-                 $insertCommet= $this->ComentarioModel->newCommentary($puntaje, $comentario,  $idPresupuesto, $idUser);
-                
-                 if ($insertCommet){
-                        $this->view->response("Se agregado el comentario", 200);
+                 $IdComment= $this->ComentarioModel->newComment($data->Puntaje, $data->Comentario,  $data->idBudget, $idUser);
+                 if ($IdComment != 0){
+                        $this->view->response("Se agregado el comentario con el id=$IdComment", 200); 
                     }
-                     else{
-                      $this->view->response("No se puedo agregar el comentario", 500);
-                    }
+                else{
+                    $this->view->response("No se puedo agregar el comentario", 500);
+                }
         }else{
                 echo("Usted no tiene permisos para realizar esta accion!");
             }
-        
     }
 
-    function deleteComentary($params=null){
+    function deleteComment($params=null){
         $id = $params[':ID'];
-        $comentario = $this->modelComentarios->getById($id);
+        $comentario = $this->ComentarioModel->getCommentById($id);
         if ($this->AuthHelper->getRole()==2){   //2 =usuario admin
             if ($comentario) {
-                $this->modelComentarios->deleteComentario($id);
-                $this->view->response("El comentario con id {$id} se eliminó correctamente", 200);
+                $this->ComentarioModel->deleteComment($id);
+                $this->view->response("El comentario con id {$id} se elimino correctamente", 200);
             }
             else{
                 $this->view->response("No existe comentario para eliminar con id {$id}", 404);
@@ -62,8 +58,5 @@ class CommentsApiController{
             echo("Usted no tiene permisos para realizar esta accion!");
         }
     }
-
-
-
 }
 ?>

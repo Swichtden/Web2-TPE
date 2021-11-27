@@ -1,6 +1,5 @@
 {include_once file='Templates/Head.tpl'}
 
-
 {if $role == 2}
 	<section>
 		{if $Edit}<h1>{$Title}</h1>{/if}

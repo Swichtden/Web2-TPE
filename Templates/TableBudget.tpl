@@ -1,6 +1,5 @@
 {include file='Templates/Head.tpl'}
 
-
 <section>
     <h1>{$Title}</h1>
 	<h2>{$Message}</h2>
@@ -11,21 +10,13 @@
 			<li>Cliente: {$Budget[0]->nombre_cliente}</li>
 			<li>Monto: {$Budget[0]->monto}</li>
 			<li>Material: {$Budget[0]->nombre_material}</li>
-			
 		</ul>
-		{if $Comentarios != false }
-				<ul>
-					{foreach from=$Comentarios item=$Comentario}
-						<li>Comentario:{$Comentario->detalle}</li>
-						<li>Puntaje:{$Comentario->puntaje}</li> 	
-					{if $role==2}
-						<button class="buttons" id="delete" data-id_comentario="{$Comentario->id_comentario}" data-id_presupuesto="{$Comentario->FK_id_cliente}"><i class="fas fa-trash fa-fw"></i></button>
-					{/if}
-					{/foreach}
-				</ul>
-		{else}
-			<h2>No hay comentarios</h2>
+		<h2>Comentarios:</h2>
+		{if $role >= 1}
+			{include file='Templates/CommentForm.tpl'}
 		{/if}
+		<div id=listaComentarios data-id_presupuesto="{$Budget[0]->id_cliente}" data-id_rol="{$role}">
+		</div>
 	{/if}
 </section>
 <script type='text/javascript' src='/Js/TableBudget.js'></script>

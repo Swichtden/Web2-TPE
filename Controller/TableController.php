@@ -13,30 +13,26 @@ require_once "./Model/ComentariosModel.php";
         private $TableView;
         private $AuthHelper;
 
-        private $ComentarioModel;
-
         function __construct(){
                 $this -> MaterialModel = new MaterialModel();
                 $this -> PresupuestoModel = new PresupuestoModel();
                 $this -> TableView = new TableView();
                 $this -> AuthHelper = new authHelper();
-                
-                $this->ComentarioModel = new ComentarioModel();
         }
 
         function showBudgets(){
 
             $budgets = $this->PresupuestoModel->getBudgets();
             $listaMateriales = $this->MaterialModel->getMateriales();
+            
             $this->TableView->showTable($budgets, "Lista de Presupuestos", $listaMateriales);
         }
 
         function showBudget($id_cliente, $edit=false, $message=""){
             $budget = $this->PresupuestoModel->getBudget($id_cliente);
             $listaMateriales = $this->MaterialModel->getMateriales();
-            $listaComentarios=$this->ComentarioModel->getComments($id_cliente);
             
-            $this->TableView->showBudget($budget,$listaComentarios, $listaMateriales, $edit, $message);
+            $this->TableView->showBudget($budget, $listaMateriales, $edit, $message);
         }
 
         function showMateriales(){
@@ -117,14 +113,4 @@ require_once "./Model/ComentariosModel.php";
             $materiales = $this->MaterialModel->getMateriales();
             $this->TableView->showTableMateriales($materiales);
         }
-
-        function agregarComentario($id){
-            if ($this->AuthHelper->getRole()>=1){   //1 =usuario registrado
-                $this->TableView->agregarComentario($id);
-            }else{
-                echo("Usted no tiene permisos para realizar esta accion!");
-            }
-        }
-
-       
     }

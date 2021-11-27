@@ -1,6 +1,5 @@
 {include file='Templates/Head.tpl'}
 
-
 <h1>{$Title}</h1>
 <h2>{$Error}</h2> 
 <form action="signIn" method="post">
