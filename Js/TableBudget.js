@@ -3,6 +3,8 @@
 document.addEventListener('DOMContentLoaded', getCommentsByPage);
 document.querySelector("#pagSiguiente").addEventListener('click', getNextPage);
 document.querySelector("#pagAnterior").addEventListener('click', getPrevPage);
+document.querySelector("#pagPrimera").addEventListener('click', getFirstPage);
+document.querySelector("#pagUltima").addEventListener('click', getLastPage);
 let commentForm = document.querySelector('#commentForm')
 if (commentForm) {
 	commentForm.addEventListener('submit', addComment);
@@ -152,13 +154,9 @@ async function addComment(e){
 			});
 			res.json();
 			if (res.status == 200) {
-				console.log("Comentario creado");
-				console.log(cantComments);
-				console.log(cantComments % 5);
 				console.log(cantComments % 5 == 0);
 				if (cantComments % 5 == 0) {
 					maxPage++;
-					console.log("MaxPage: " + maxPage);
 				}
 				getLastPage();
 			}
