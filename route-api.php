@@ -5,6 +5,7 @@ require_once 'Controller/CommentsApiController.php';
 $router = new Router();
 
 $router->addRoute('Comentarios/:ID_Budget', 'GET', 'CommentsApiController', 'getComments');
+$router->addRoute('Comentarios/:ID_Budget/:Page', 'GET', 'CommentsApiController', 'getCommentsByPage');
 $router->addRoute('Comentario', 'POST', 'CommentsApiController', 'AddComment');
 $router->addRoute('Comentario/:ID', 'DELETE', 'CommentsApiController', 'deleteComment');
 

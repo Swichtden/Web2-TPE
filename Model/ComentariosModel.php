@@ -25,7 +25,28 @@
 
         function getComments($idBudget){
             $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE FK_id_cliente=?");
-            $sentencia->execute((array)$idBudget);
+            $sentencia->execute([$idBudget]);
+            $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
+            return $comentarios;
+        }
+
+        function getCantRows($idBudget){
+            $sentencia= $this->db->prepare("SELECT COUNT(*) AS 'cantTotal' FROM comentarios WHERE FK_id_cliente=?");
+            $sentencia->execute([$idBudget]);
+            $cantRow= $sentencia->fetch(PDO::FETCH_OBJ);
+            return $cantRow->cantTotal;
+        }
+
+        function getCommentsByPage($idBudget, $page, $cantRows){
+            $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE FK_id_cliente=? LIMIT ?,?"); //Devuelve 5 comentarios por pagina
+            $sentencia->bindParam(1, $idBudget, PDO::PARAM_INT);
+            if ($page <= 0){
+                $page = 1;
+            }
+            $page = (($page-1)*5);
+            $sentencia->bindParam(2, $page, PDO::PARAM_INT);
+            $sentencia->bindParam(3, $cantRows, PDO::PARAM_INT);
+            $sentencia->execute(); //---------------------------------->asignamos los parametros de esta forma porque sino los pasaba como string
             $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
             return $comentarios;
         }

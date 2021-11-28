@@ -1,9 +1,92 @@
 "use strict"
 
-document.addEventListener('DOMContentLoaded', getComments);
+document.addEventListener('DOMContentLoaded', getCommentsByPage);
+document.querySelector("#pagSiguiente").addEventListener('click', getNextPage);
+document.querySelector("#pagAnterior").addEventListener('click', getPrevPage);
 let commentForm = document.querySelector('#commentForm')
 if (commentForm) {
 	commentForm.addEventListener('submit', addComment);
+}
+
+let page = 1;
+let maxPage;
+let cantComments;
+
+function getNextPage() {
+	if (page < maxPage) {
+		page++;
+		getCommentsByPage();
+		updatePageCount();
+	}
+}
+
+function getPrevPage() {
+	if (page > 1) {
+		page--;
+		getCommentsByPage();
+		updatePageCount();
+	}
+}
+
+function getLastPage(){
+	page = maxPage;
+	getCommentsByPage();
+	updatePageCount();
+}
+
+function getFirstPage(){
+	page = 1;
+	getCommentsByPage();
+	updatePageCount();
+}
+
+function updatePageCount(){
+	document.querySelector("#pageNumber").innerHTML = page;
+}
+
+async function getCommentsByPage() {
+	try {
+		let res = await fetch(`/api/Comentarios/${document.querySelector("#listaComentarios").dataset.id_presupuesto}/${page}`, {
+			"method": "GET",
+		});
+		if (res.status == 200) {
+			res.json().then(data => {
+				cantComments = data['totalRows'];
+				maxPage = data['cantPages'];
+				let listaComentarios = document.querySelector("#listaComentarios");
+				listaComentarios.innerHTML = "";
+				if (data['comentarios'].length == 0) {
+					document.querySelector("#pagButtons").hidden = true;
+					listaComentarios.innerHTML = `<p>No hay comentarios</p>`;
+				};
+				for (let comentario of data['comentarios']) {
+					document.querySelector("#pagButtons").hidden = false;
+					let lista = document.createElement("ul");
+					lista.classList.add("lista-comentarios");
+					let puntaje = document.createElement("li");
+					puntaje.innerHTML = `Puntaje: ${comentario.puntaje}`;
+					let detalle = document.createElement("li");
+					detalle.innerHTML = `Comentario: ${comentario.detalle}`;
+					lista.appendChild(puntaje);
+					lista.appendChild(detalle);
+					if (document.querySelector("#listaComentarios").dataset.id_rol == 2) {
+						let deleteButton = document.createElement("button");
+						deleteButton.classList.add("buttons", "deleteButton");
+						deleteButton.setAttribute("data-id_comentario", comentario.id_comentario);
+						deleteButton.innerHTML = `<i class="fas fa-trash fa-fw"></i>`;
+						lista.appendChild(deleteButton);
+					}
+					listaComentarios.appendChild(lista);
+					document.querySelectorAll(".deleteButton").forEach(
+						function(currentValue) {
+							currentValue.addEventListener('click', deleteComment);
+						});
+				}
+			})
+		};
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 async function getComments() {
@@ -70,7 +153,14 @@ async function addComment(e){
 			res.json();
 			if (res.status == 200) {
 				console.log("Comentario creado");
-				getComments();
+				console.log(cantComments);
+				console.log(cantComments % 5);
+				console.log(cantComments % 5 == 0);
+				if (cantComments % 5 == 0) {
+					maxPage++;
+					console.log("MaxPage: " + maxPage);
+				}
+				getLastPage();
 			}
 			else {
 				console.log("Error al crear comentario");
@@ -92,7 +182,7 @@ async function deleteComment(e){
 		res.json();
 		if (res.status == 200) {
 			console.log("Comentario eliminado");
-			getComments();
+			getFirstPage();
 	  }
 	} catch (error) {
 		console.log(error);

@@ -15,6 +15,7 @@
 		{if $role >= 1}
 			{include file='Templates/CommentForm.tpl'}
 		{/if}
+		<div id="pagButtons"><button id="pagAnterior"><i class="fas fa-chevron-left"></i></button><span id="pageNumber">1</span><button id="pagSiguiente"><i class="fas fa-chevron-right"></i></button></div>
 		<div id=listaComentarios data-id_presupuesto="{$Budget[0]->id_cliente}" data-id_rol="{$role}">
 		</div>
 	{/if}

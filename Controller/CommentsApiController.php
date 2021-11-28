@@ -27,6 +27,14 @@ class CommentsApiController{
         $this->view->response($comentarios,200);
     }
 
+    function getCommentsByPage($data){
+        $cantRows = 5;
+        $comentarios = $this->ComentarioModel->getCommentsByPage($data[':ID_Budget'],$data[':Page'],$cantRows);
+        $totalRows = $this->ComentarioModel->getCantRows($data[':ID_Budget']);
+        $datos = array("comentarios"=>$comentarios, "totalRows"=>$totalRows ,"cantPages"=>ceil($totalRows/$cantRows));
+        $this->view->response($datos,200);
+    }
+
     function AddComment(){
         $data = $this->getBody();
         $idUser = $this->AuthHelper->getUserId();
