@@ -91,47 +91,6 @@ async function getCommentsByPage() {
 	}
 }
 
-async function getComments() {
-	try {
-		let res = await fetch(`/api/Comentarios/${document.querySelector("#listaComentarios").dataset.id_presupuesto}`, {
-			"method": "GET",
-		});
-		if (res.status == 200) {
-			res.json().then(data => {
-				let listaComentarios = document.querySelector("#listaComentarios");
-				listaComentarios.innerHTML = "";
-				if (data.length == 0) {
-					listaComentarios.innerHTML = `<p>No hay comentarios</p>`;
-				};
-				for (let comentario of data) {
-					let lista = document.createElement("ul");
-					lista.classList.add("lista-comentarios");
-					let puntaje = document.createElement("li");
-					puntaje.innerHTML = `Puntaje: ${comentario.puntaje}`;
-					let detalle = document.createElement("li");
-					detalle.innerHTML = `Comentario: ${comentario.detalle}`;
-					lista.appendChild(puntaje);
-					lista.appendChild(detalle);
-					if (document.querySelector("#listaComentarios").dataset.id_rol == 2) {
-						let deleteButton = document.createElement("button");
-						deleteButton.classList.add("buttons", "deleteButton");
-						deleteButton.setAttribute("data-id_comentario", comentario.id_comentario);
-						deleteButton.innerHTML = `<i class="fas fa-trash fa-fw"></i>`;
-						lista.appendChild(deleteButton);
-					}
-					listaComentarios.appendChild(lista);
-					document.querySelectorAll(".deleteButton").forEach(
-						function(currentValue) {
-							currentValue.addEventListener('click', deleteComment);
-						});
-				}
-			})
-		};
-	} catch (error) {
-		console.log(error);
-	}
-}
-
 async function addComment(e){
 	e.preventDefault();
 	let form = document.querySelector('#commentForm');
